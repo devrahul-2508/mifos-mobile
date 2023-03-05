@@ -5,6 +5,7 @@
 package org.mifos.mobile.api
 
 import android.text.TextUtils
+import android.util.Log
 
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -22,7 +23,7 @@ class SelfServiceInterceptor(private val tenant: String?, private val authToken:
         val chainRequest = chain.request()
         val builder = chainRequest.newBuilder()
                 .header(HEADER_TENANT, tenant)
-            .header(CONTENT_TYPE,"application/json")
+
         if (!TextUtils.isEmpty(authToken)) {
             builder.header(HEADER_AUTH, authToken)
         }
